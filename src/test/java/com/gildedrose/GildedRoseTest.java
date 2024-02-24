@@ -42,6 +42,14 @@ class GildedRoseTest {
     }
     
     @Test
+    void NormalItem_SellInNegativeAndQualityOne_QualityReducedByOne() {
+    	Item[] items = new Item[] {new Item("Normal Item", -1, 1)};
+    	makeAppAndUpdate(items);
+    	assertEquals(-2, item.sellIn);
+    	assertEquals(0, item.quality);
+    }
+    
+    @Test
     void AgedBrie_IncreasesValueByOne() {
     	Item[] items = new Item[] {new Item(GildedRose.AGED_BRIE, 10, 10)};
     	makeAppAndUpdate(items);
@@ -58,7 +66,23 @@ class GildedRoseTest {
     }
     
     @Test
-    void BackstagePass_SellInHigherThanTen_QualityIncreasedByOne() {
+    void AgedBrie_SellInNegative_QualityIncreasesByTwo() {
+    	Item[] items = new Item[] {new Item(GildedRose.AGED_BRIE, 0, 36)};
+    	makeAppAndUpdate(items);
+    	assertEquals(-1, item.sellIn);
+    	assertEquals(38, item.quality);
+    }
+    
+    @Test
+    void AgedBrie_SellInNegativeAndQualityFortyNine_QualityIncreasesByOne() {
+    	Item[] items = new Item[] {new Item(GildedRose.AGED_BRIE, 0, 49)};
+    	makeAppAndUpdate(items);
+    	assertEquals(-1, item.sellIn);
+    	assertEquals(50, item.quality);
+    }
+    
+    @Test
+    void BackstagePass_SellInGreaterThanTen_QualityIncreasedByOne() {
     	Item[] items = new Item[] {new Item(GildedRose.BACKSTAGE_PASS, 15,15)};
     	makeAppAndUpdate(items);
     	assertEquals(14, item.sellIn);
@@ -67,7 +91,7 @@ class GildedRoseTest {
     
     @ParameterizedTest
     @ValueSource (ints = {10, 8, 6})
-    void BackstagePass_SellInHigerThanFiveLowerThanEleven_QualityIncreasesByTwo(int sellIn) {
+    void BackstagePass_SellInGreaterThanFiveLowerThanEleven_QualityIncreasesByTwo(int sellIn) {
     	Item[] items = new Item[] {new Item(GildedRose.BACKSTAGE_PASS, sellIn, 15)};
     	makeAppAndUpdate(items);
     	assertEquals(sellIn-1, item.sellIn);
@@ -76,11 +100,20 @@ class GildedRoseTest {
     
     @ParameterizedTest
     @ValueSource (ints = {5, 3, 1})
-    void BackstagePass_SellInPositiveAndLowerThanSix_QualityIncreasesByThree(int sellIn) {
+    void BackstagePass_SellInPositiveAndLessThanSix_QualityIncreasesByThree(int sellIn) {
     	Item[] items = new Item[] {new Item(GildedRose.BACKSTAGE_PASS, sellIn, 15)};
     	makeAppAndUpdate(items);
     	assertEquals(sellIn-1, item.sellIn);
     	assertEquals(18, item.quality);
+    }
+    
+    @ParameterizedTest
+    @ValueSource (ints = {3,7,12})
+    void BackstagePass_SellInPositiveAndQualityFortyNine_QualityIsFifty(int sellIn) {
+    	Item[] items = new Item[] {new Item(GildedRose.BACKSTAGE_PASS, sellIn, 49)};
+    	makeAppAndUpdate(items);
+    	assertEquals(sellIn-1, item.sellIn);
+    	assertEquals(50, item.quality);
     }
     
     @Test
