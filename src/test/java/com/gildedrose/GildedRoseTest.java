@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import com.gildedrose.updators.ItemType;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.awt.ItemSelectable;
@@ -54,7 +56,7 @@ class GildedRoseTest {
 
 	@Test
 	void AgedBrie_IncreasesValueByOne() {
-		Item[] items = new Item[] {new Item(GildedRose.AGED_BRIE, 10, 10)};
+		Item[] items = new Item[] {new Item(ItemType.getItemString(ItemType.AGED_BRIE), 10, 10)};
 		makeAppAndUpdate(items);
 		assertEquals(9, item.sellIn);
 		assertEquals(11, item.quality);
@@ -62,7 +64,7 @@ class GildedRoseTest {
 
 	@Test
 	void AgedBrie_QualityEqualsFifty_QualityDoesNotIncrease() {
-		Item[] items = new Item[] {new Item(GildedRose.AGED_BRIE, 10, 50)};
+		Item[] items = new Item[] {new Item(ItemType.getItemString(ItemType.AGED_BRIE), 10, 50)};
 		makeAppAndUpdate(items);
 		assertEquals(9, item.sellIn);
 		assertEquals(50, item.quality);
@@ -70,7 +72,7 @@ class GildedRoseTest {
 
 	@Test
 	void AgedBrie_SellInNegative_QualityIncreasesByTwo() {
-		Item[] items = new Item[] {new Item(GildedRose.AGED_BRIE, 0, 36)};
+		Item[] items = new Item[] {new Item(ItemType.getItemString(ItemType.AGED_BRIE), 0, 36)};
 		makeAppAndUpdate(items);
 		assertEquals(-1, item.sellIn);
 		assertEquals(38, item.quality);
@@ -78,7 +80,7 @@ class GildedRoseTest {
 
 	@Test
 	void AgedBrie_SellInNegativeAndQualityFortyNine_QualityIncreasesByOne() {
-		Item[] items = new Item[] {new Item(GildedRose.AGED_BRIE, 0, 49)};
+		Item[] items = new Item[] {new Item(ItemType.getItemString(ItemType.AGED_BRIE), 0, 49)};
 		makeAppAndUpdate(items);
 		assertEquals(-1, item.sellIn);
 		assertEquals(50, item.quality);
@@ -86,7 +88,7 @@ class GildedRoseTest {
 
 	@Test
 	void BackstagePass_SellInGreaterThanTen_QualityIncreasedByOne() {
-		Item[] items = new Item[] {new Item(GildedRose.BACKSTAGE_PASS, 15,15)};
+		Item[] items = new Item[] {new Item(ItemType.getItemString(ItemType.BACKSTAGE_PASS), 15,15)};
 		makeAppAndUpdate(items);
 		assertEquals(14, item.sellIn);
 		assertEquals(16, item.quality);
@@ -95,7 +97,7 @@ class GildedRoseTest {
 	@ParameterizedTest
 	@ValueSource (ints = {10, 8, 6})
 	void BackstagePass_SellInGreaterThanFiveLowerThanEleven_QualityIncreasesByTwo(int sellIn) {
-		Item[] items = new Item[] {new Item(GildedRose.BACKSTAGE_PASS, sellIn, 15)};
+		Item[] items = new Item[] {new Item(ItemType.getItemString(ItemType.BACKSTAGE_PASS), sellIn, 15)};
 		makeAppAndUpdate(items);
 		assertEquals(sellIn-1, item.sellIn);
 		assertEquals(17, item.quality);
@@ -104,7 +106,7 @@ class GildedRoseTest {
 	@ParameterizedTest
 	@ValueSource (ints = {5, 3, 1})
 	void BackstagePass_SellInPositiveAndLessThanSix_QualityIncreasesByThree(int sellIn) {
-		Item[] items = new Item[] {new Item(GildedRose.BACKSTAGE_PASS, sellIn, 15)};
+		Item[] items = new Item[] {new Item(ItemType.getItemString(ItemType.BACKSTAGE_PASS), sellIn, 15)};
 		makeAppAndUpdate(items);
 		assertEquals(sellIn-1, item.sellIn);
 		assertEquals(18, item.quality);
@@ -113,7 +115,7 @@ class GildedRoseTest {
 	@ParameterizedTest
 	@ValueSource (ints = {3,7,12})
 	void BackstagePass_SellInPositiveAndQualityFortyNine_QualityIsFifty(int sellIn) {
-		Item[] items = new Item[] {new Item(GildedRose.BACKSTAGE_PASS, sellIn, 49)};
+		Item[] items = new Item[] {new Item(ItemType.getItemString(ItemType.BACKSTAGE_PASS), sellIn, 49)};
 		makeAppAndUpdate(items);
 		assertEquals(sellIn-1, item.sellIn);
 		assertEquals(50, item.quality);
@@ -121,7 +123,7 @@ class GildedRoseTest {
 
 	@Test
 	void BackstagePass_SellInZero_QualityEqualsZero() {
-		Item[] items = new Item[] {new Item(GildedRose.BACKSTAGE_PASS, 0, 15)};
+		Item[] items = new Item[] {new Item(ItemType.getItemString(ItemType.BACKSTAGE_PASS), 0, 15)};
 		makeAppAndUpdate(items);
 		assertEquals(-1, item.sellIn);
 		assertEquals(0, item.quality);
@@ -129,7 +131,7 @@ class GildedRoseTest {
 
 	@Test
 	void Sulfuras_QualityStaysConstant() {
-		Item[] items = new Item[] {new Item(GildedRose.SULFURAS, 0, 65)};
+		Item[] items = new Item[] {new Item(ItemType.getItemString(ItemType.SULFURAS), 0, 65)};
 		makeAppAndUpdate(items);
 		assertEquals(0, item.sellIn);
 		assertEquals(65, item.quality);
