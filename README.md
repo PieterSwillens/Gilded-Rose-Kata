@@ -1,30 +1,7 @@
-# Gilded Rose starting position in Java
+# Gilded Rose Kata
 
-## Run the TextTest Fixture from Command-Line
+The starting code for this exercise can be found [here](https://github.com/emilybache/GildedRose-Refactoring-Kata).
 
-```
-./gradlew -q text
-```
-
-### Specify Number of Days
-
-For e.g. 10 days:
-
-```
-./gradlew -q text --args 10
-```
-
-You should make sure the gradle commands shown above work when you execute them in a terminal before trying to use TextTest (see below).
-
-
-## Run the TextTest approval test that comes with this project
-
-There are instructions in the [TextTest Readme](../texttests/README.md) for setting up TextTest. What's unusual for the Java version is there are two executables listed in [config.gr](../texttests/config.gr) for Java. The first uses Gradle wrapped in a python script. Uncomment these lines to use it:
-
-    executable:${TEXTTEST_HOME}/Java/texttest_rig.py
-    interpreter:python
-
-The other relies on your CLASSPATH being set correctly in [environment.gr](../texttests/environment.gr). Uncomment these lines to use it instead:
-
-    executable:com.gildedrose.TexttestFixture
-    interpreter:java
+## Objective of the exercise
+The goal is to add an item with its own behaviours into an already existing catalog. However, you'll soon realize that this won't be an easy task, since we're dealing with a legacy code base.  
+The idea is to refactor the code without losing its functionality, so that adding the new item would be a breeze.
