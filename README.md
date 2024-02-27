@@ -6,5 +6,4 @@ The goal is to add an item with its own behaviours into an already existing cata
 Therefore, it is necessary to refactor the already existing code without it losing its functionality.
 
 ## Solution
-My solution to this problem and the corresponding test classes can be found under the 'src' folder. If you're interested in delving deeper into my thought process behind the refactoring decisions or have any questions about the implementation, feel free to reach out to me.  
-I'm open to discussing insights and exchanging ideas and I look forward to engaging with fellow developers and enthusiasts!
+You can find my solution to the problem and the corresponding test classes in the 'src' folder. If you're interested in learning more about the reasoning behind my refactoring decisions or have any questions about the implementation, feel free to reach out to me. I'm open to discussing insights and exchanging ideas!
